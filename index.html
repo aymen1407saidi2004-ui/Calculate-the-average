@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة المعدل الجامعي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-mesh"></div>
+
+    <div class="main-container">
+        <header>
+            <div class="icon-wrapper">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1>حاسبة المعدل الجامعي</h1>
+            <p>احسب معدلك بدقة وسهولة</p>
+        </header>
+
+        <div class="table-container">
+            <table id="modulesTable">
+                <thead>
+                    <tr>
+                        <th>المادة</th>
+                        <th width="80">المعامل</th>
+                        <th width="100">الاختبار (60%)</th>
+                        <th width="80">TD</th>
+                        <th width="80">TP</th>
+                        <th width="80">المعدل</th>
+                        <th width="50"></th>
+                    </tr>
+                </thead>
+                <tbody id="modulesList">
+                    <!-- Modules will be added here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-secondary" onclick="addModule()">
+                <i class="fas fa-plus"></i> إضافة مادة
+            </button>
+            <button class="btn btn-primary" onclick="calculateGPA()">
+                <i class="fas fa-calculator"></i> احسب المعدل
+            </button>
+        </div>
+
+        <div id="resultModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>النتيجة النهائية</h2>
+                <div class="gpa-circle">
+                    <span id="finalGPA">0.00</span>
+                </div>
+                <p id="gradeMessage">تقدير ممتاز</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template for Module Row -->
+    <template id="moduleTemplate">
+        <tr class="module-row fade-in">
+            <td>
+                <input type="text" placeholder="اسم المادة" class="input-name">
+            </td>
+            <td>
+                <input type="number" class="input-coeff" value="1" min="1">
+            </td>
+            <td>
+                <input type="number" class="input-exam" placeholder="/20" min="0" max="20">
+            </td>
+            <td>
+                <input type="number" class="input-td" placeholder="/20" min="0" max="20">
+            </td>
+            <td>
+                <input type="number" class="input-tp" placeholder="/20" min="0" max="20">
+            </td>
+            <td>
+                <span class="module-avg">--</span>
+            </td>
+            <td>
+                <button class="btn-delete" onclick="removeModule(this)"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
